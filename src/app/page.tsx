@@ -1,4 +1,5 @@
 import { BackToTop } from "@/components/BackToTop";
+import { ChatWidget } from "@/components/ChatWidget";
 import { Collections } from "@/components/Collections";
 import { Contact } from "@/components/Contact";
 import { Craft } from "@/components/Craft";
@@ -35,6 +36,7 @@ export default function Home() {
         <MotifBand />
       </main>
       <Footer />
+      <ChatWidget />
       <FloatingWhatsApp />
       <BackToTop />
       <RevealObserver />

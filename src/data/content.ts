@@ -148,4 +148,28 @@ export const content = {
     whatsapp: "Chat with Arawali on WhatsApp",
     toTop: "Back to top",
   },
+  chat: {
+    open: "Ask Arawali a question",
+    close: "Close chat",
+    title: "Ask Arawali",
+    subtitle: "English · Deutsch · Français · Nederlands · Italiano · Español",
+    greeting:
+      "Hello! I can answer questions about our hand block printed textiles, custom designs and how ordering works. Ask in your own language.",
+    suggestions: ["Can you print my own design?", "What products do you make?", "How does ordering work?"],
+    placeholder: "Type your question…",
+    send: "Send",
+    thinking: "Typing…",
+    disclaimer: "AI assistant. Prices and terms are confirmed by our team.",
+    errors: {
+      rate_limited: "You’ve sent a lot of messages in a short time. Please wait a few minutes, or message us on WhatsApp.",
+      busy: "Our assistant is busy right now. Please try again shortly, or message us on WhatsApp.",
+      generic: "Sorry, something went wrong. Please try again, or message us on WhatsApp.",
+    },
+    enquiry: {
+      title: "Send this enquiry",
+      edit: "Details for our team",
+      submit: "Send enquiry ↗",
+      sent: "Sent! We’ll reply within one working day.",
+    },
+  },
 } as const;
