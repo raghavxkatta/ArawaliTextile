@@ -1,0 +1,151 @@
+/**
+ * All page copy, in English. To add French or German later, copy this object
+ * into content.fr.ts / content.de.ts with the same shape and select by locale.
+ * Headings are split into a plain part and an emphasised (italic) part.
+ */
+export const content = {
+  meta: {
+    title: "Arawali Textile | Hand Block Printed Textiles from Jaipur",
+    description:
+      "Hand block printed bedcovers, quilts, table linen, nightwear and fabric, made to order in Jaipur for boutiques and home-decor brands across Europe. Any size, colour or design.",
+    ogAlt: "Arawali Textile, hand block printed in Jaipur",
+  },
+  topBar: ["HAND BLOCK PRINTED IN JAIPUR", "SINCE 1991", "MADE FOR EUROPE"],
+  logoTagline: "TEXTILE · JAIPUR",
+  nav: [
+    { href: "#heritage", label: "Our heritage", mobile: ["Our ", "heritage"] },
+    { href: "#collections", label: "Collections", mobile: ["Collections", ""] },
+    { href: "#craft", label: "The craft", mobile: ["The ", "craft"] },
+    { href: "#ordering", label: "How to order", mobile: ["How to order", ""] },
+  ],
+  mobileExtraNav: { href: "#contact", label: "Contact" },
+  headerCta: "Let’s create together ↗",
+  menu: { open: "Open menu", close: "Close menu", whatsapp: "Chat on WhatsApp" },
+  hero: {
+    label: "Arawali Textile",
+    eyebrow: "From the heart of Rajasthan",
+    titleA: "Arawali",
+    titleB: "Textile",
+    tag: "The soul of Jaipur, in every thread.",
+    sub: "Hand block printed bedcovers, quilts, table linen and nightwear, made in any size, colour or design for shops across Europe.",
+    cta: "Explore our textiles ↗",
+    scrollCue: "A living tradition",
+    coords: "JAIPUR, INDIA · 26.91° N, 75.78° E",
+  },
+  heritage: {
+    imageAlt: "An artisan's hands pressing a carved wooden block onto cream cotton printed with red and indigo flowers",
+    eyebrow: "Rooted in India · Made by hand",
+    title: ["Every piece carries", "a little of Jaipur."],
+    paragraphs: [
+      "For generations, printers around Jaipur have pressed carved wooden blocks into cotton, one impression at a time. Arawali is a family workshop on Amber Road that keeps this craft alive and brings it to bedrooms and dining tables across Europe.",
+      "Because every print is placed by hand, no two pieces are exactly alike.",
+    ],
+    stats: [
+      { value: "1991", label: "Founded in Jaipur" },
+      { value: "200", label: "Artisans and staff", countTo: 200 },
+      { value: "Any", label: "Size, colour or design" },
+    ],
+  },
+  collections: {
+    eyebrow: "The Arawali collection",
+    title: ["Patterns for ", "every room."],
+    lede: "For quiet mornings, long dinners and homes that feel lived in. Tap any piece for details.",
+    filterLabel: "Filter collections",
+    viewDetails: "View details",
+    quickView: {
+      eyebrow: "Arawali collection",
+      material: "Material",
+      technique: "Technique",
+      sizes: "Sizes",
+      custom: "Custom",
+      customValue: "Any colour, size or design",
+      enquire: "Enquire about this ↗",
+      close: "Close",
+    },
+  },
+  customFeature: {
+    imageAlt: "Hand carved wooden printing blocks with floral motifs, stained with indigo",
+    eyebrow: "For a print of your own",
+    title: "Custom blocks & private label",
+    body: "Send us a sketch or a swatch. We carve your motif in wood, print a sample in your colours, then produce your collection with your own labels and packaging.",
+    link: "Bring your pattern to life",
+  },
+  craft: {
+    title: ["One block. One hand.", "Endless patterns."],
+    imageEyebrow: "The tools of a timeless craft",
+    imageCaption: "Every pattern begins as a block of carved wood.",
+    steps: [
+      { n: "i.", title: "Carve", body: "Craftsmen carve each motif into seasoned wood, one block for every colour." },
+      { n: "ii.", title: "Dye", body: "Eco-friendly colours are mixed by hand and matched to your swatch." },
+      { n: "iii.", title: "Print", body: "Pressed block by block along long tables, every repeat aligned by eye." },
+      { n: "iv.", title: "Finish", body: "Washed, sun-dried, checked piece by piece, then stitched and packed." },
+    ],
+  },
+  ordering: {
+    eyebrow: "How to order",
+    title: ["From first message ", "to your shop floor."],
+    // TODO(owner): confirm sample lead time and charges, MOQ and shipping terms (FOB / CIF).
+    steps: [
+      { title: "Enquiry", body: "Tell us what you need. We reply within a day with prices and lead times." },
+      { title: "Sample", body: "We print a sample in your colours and courier it to you." },
+      { title: "Approval", body: "You confirm colours, sizes and labels before bulk begins." },
+      { title: "Production", body: "Printed, stitched and checked in Jaipur, with updates by email." },
+      { title: "Dispatch", body: "Packed for export and shipped to your door in Europe." },
+    ],
+  },
+  gallery: {
+    eyebrow: "From our showroom",
+    title: "Recently on the tables",
+    prev: "Scroll gallery left",
+    next: "Scroll gallery right",
+    trackLabel: "Product photos, scroll sideways",
+  },
+  contact: {
+    eyebrow: "Your ideas · Our craft",
+    title: ["Tell us what", "you’d love to make."],
+    lede: "For your shop, your next collection, or a print you have been dreaming of. We reply to every enquiry within a day.",
+    copy: "Copy",
+    copied: "Copied",
+    copyFallback: "Selected, press copy",
+    whatsapp: "WhatsApp",
+  },
+  form: {
+    name: { label: "Your name", placeholder: "Anna Müller" },
+    company: { label: "Company / shop", placeholder: "Maison Lin" },
+    email: { label: "Email address", placeholder: "you@company.com" },
+    phone: { label: "Phone / WhatsApp (optional)", placeholder: "+49 151 2345 6789" },
+    country: { label: "Country" },
+    product: { label: "Product" },
+    quantity: { label: "Approximate quantity", placeholder: "e.g. 300 pieces" },
+    message: { label: "What do you have in mind?", placeholder: "Sizes, colours, a reference print, your timeline…" },
+    honeypot: "Leave this field empty",
+    submit: "Send enquiry ↗",
+    sending: "Sending…",
+    errors: {
+      name: "Please add your name so we know who to reply to.",
+      email: "Please add an email we can reply to, like you@company.com.",
+      tooLong: "That’s a little long. Please shorten it.",
+      server: "We couldn’t send that. Please try again, or message us on WhatsApp.",
+      rateLimited: "You’ve sent several enquiries in a short time. Please wait a few minutes, or message us on WhatsApp.",
+    },
+    success: {
+      title: "Your enquiry has been sent",
+      body: "Thank you. We’ll reply within one working day with prices, lead times and sample options. Here is what you sent:",
+      whatsapp: "Also message us on WhatsApp ↗",
+      another: "Send another enquiry",
+    },
+    whatsappIntro: "Hello Arawali Textile,",
+  },
+  countries: ["Germany", "France", "United Kingdom", "Netherlands", "Italy", "Spain", "Other"],
+  footer: {
+    say: "From Jaipur, with care.",
+    explore: "Explore",
+    visit: "Visit",
+    visitNote: "Showroom on Amber Road, Jaipur. Visits by appointment.",
+    legal: "Arawali Textile · Jaipur, Rajasthan",
+  },
+  floating: {
+    whatsapp: "Chat with Arawali on WhatsApp",
+    toTop: "Back to top",
+  },
+} as const;
