@@ -23,8 +23,31 @@ export function ChatWidget() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
 
+  // Phones: full screen, sized to the visible area so the keyboard never covers the input
+  const [viewport, setViewport] = useState<{ height: number; top: number } | null>(null);
+
   useEffect(() => {
-    if (open) inputRef.current?.focus();
+    if (!open) return;
+    // Opening the keyboard straight away hides half the panel on phones
+    if (finePointer()) inputRef.current?.focus();
+
+    const mobile = matchMedia("(max-width: 640px)");
+    const vv = window.visualViewport;
+    const prevOverflow = document.body.style.overflow;
+    const update = () => {
+      document.body.style.overflow = mobile.matches ? "hidden" : prevOverflow;
+      setViewport(mobile.matches && vv ? { height: vv.height, top: vv.offsetTop } : null);
+    };
+    update();
+    vv?.addEventListener("resize", update);
+    vv?.addEventListener("scroll", update);
+    mobile.addEventListener("change", update);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      vv?.removeEventListener("resize", update);
+      vv?.removeEventListener("scroll", update);
+      mobile.removeEventListener("change", update);
+    };
   }, [open]);
 
   useEffect(() => {
@@ -77,7 +100,7 @@ export function ChatWidget() {
       setEntries((es) => [...es, { kind: "error", text: t.errors.generic }]);
     } finally {
       setPending(false);
-      inputRef.current?.focus();
+      if (finePointer()) inputRef.current?.focus();
     }
   };
 
@@ -106,19 +129,21 @@ export function ChatWidget() {
           role="dialog"
           aria-label={t.title}
           onKeyDown={(e) => e.key === "Escape" && close()}
-          className="fixed inset-0 z-50 flex flex-col bg-paper pt-[var(--safe-top)] pb-[var(--safe-bottom)] shadow-[0_18px_48px_rgb(0_0_0/0.28)] min-[641px]:inset-auto min-[641px]:right-[calc(18px+var(--safe-right))] min-[641px]:bottom-[calc(18px+var(--safe-bottom))] min-[641px]:h-[min(620px,calc(100dvh-36px))] min-[641px]:w-[390px] min-[641px]:border min-[641px]:border-line min-[641px]:p-0"
+          style={viewport ? { top: viewport.top, bottom: "auto", height: viewport.height } : undefined}
+          className="fixed inset-0 z-[70] flex flex-col bg-paper pt-[var(--safe-top)] pb-[var(--safe-bottom)] shadow-[0_18px_48px_rgb(0_0_0/0.28)] min-[641px]:inset-auto min-[641px]:right-[calc(18px+var(--safe-right))] min-[641px]:bottom-[calc(18px+var(--safe-bottom))] min-[641px]:h-[min(620px,calc(100dvh-36px))] min-[641px]:w-[390px] min-[641px]:border min-[641px]:border-line min-[641px]:p-0"
         >
-          <header className="flex items-start justify-between gap-3 bg-maroon px-5 py-4 text-on-maroon">
-            <div>
-              <h2 className="text-[26px] leading-none">{t.title}</h2>
-              <p className="mt-1.5 text-[11.5px] tracking-wide opacity-85">{t.subtitle}</p>
+          <header className="flex shrink-0 items-start justify-between gap-3 bg-maroon px-4 py-3 text-on-maroon min-[641px]:px-5 min-[641px]:py-4">
+            <div className="min-w-0">
+              <h2 className="text-[22px] leading-none min-[641px]:text-[26px]">{t.title}</h2>
+              {/* Short screens (phone keyboard open) keep the room for the conversation */}
+              <p className="mt-1.5 text-[11.5px] tracking-wide opacity-85 [@media(max-height:480px)]:hidden">{t.subtitle}</p>
             </div>
-            <button type="button" onClick={close} aria-label={t.close} className="cursor-pointer p-1 text-[26px] leading-none">
+            <button type="button" onClick={close} aria-label={t.close} className="-mt-1 -mr-1 grid h-11 w-11 shrink-0 cursor-pointer place-items-center text-[28px] leading-none">
               ×
             </button>
           </header>
 
-          <div ref={logRef} role="log" aria-live="polite" className="flex flex-1 flex-col gap-3 overflow-y-auto px-4 py-4">
+          <div ref={logRef} role="log" aria-live="polite" className="flex min-h-0 flex-1 flex-col gap-3 overflow-x-hidden overflow-y-auto overscroll-contain px-4 py-4">
             <Bubble kind="model">{t.greeting}</Bubble>
             {entries.length === 0 && (
               <div className="flex flex-wrap gap-2">
@@ -158,11 +183,12 @@ export function ChatWidget() {
               e.preventDefault();
               send(input);
             }}
-            className="border-t border-line px-4 pt-3 pb-3"
+            className="shrink-0 border-t border-line px-4 pt-3 pb-3"
           >
             <div className="flex items-end gap-2">
               <textarea
                 ref={inputRef}
+                enterKeyHint="send"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
@@ -175,19 +201,21 @@ export function ChatWidget() {
                 maxLength={MAX_CHAT_MESSAGE_LENGTH}
                 placeholder={t.placeholder}
                 aria-label={t.placeholder}
-                className="field max-h-[120px] min-h-[46px] flex-1 resize-none text-[16px]"
+                className="field max-h-[120px] min-h-[46px] min-w-0 flex-1 resize-none text-[16px]"
               />
               <button type="submit" disabled={pending || !input.trim()} className="btn btn-solid min-h-[46px] px-4! disabled:opacity-50">
                 {t.send}
               </button>
             </div>
-            <p className="mt-2 text-[11.5px] text-muted">{t.disclaimer}</p>
+            <p className="mt-2 text-[11.5px] text-muted [@media(max-height:480px)]:hidden">{t.disclaimer}</p>
           </form>
         </div>
       )}
     </>
   );
 }
+
+const finePointer = () => matchMedia("(pointer: fine)").matches;
 
 function Bubble({ kind, children }: { kind: "user" | "model"; children: React.ReactNode }) {
   return (
@@ -261,7 +289,8 @@ function EnquiryCard({ draft }: { draft: EnquiryDraft }) {
     value: values[field],
     onChange: set(field),
     "aria-invalid": errors[field] ? true : undefined,
-    className: "field py-2! text-[15px]",
+    // 16px or more, or iPhone Safari zooms the page in when a field is tapped
+    className: "field min-w-0 py-2! text-[16px]",
   });
   const error = (field: CardField) => errors[field] && <span className="text-[12.5px] font-medium text-error">{errors[field]}</span>;
 
@@ -307,7 +336,7 @@ function EnquiryCard({ draft }: { draft: EnquiryDraft }) {
       </label>
       <label className={label}>
         {t.enquiry.edit}
-        <textarea {...input("message")} rows={3} className="field resize-y py-2! text-[15px]" />
+        <textarea {...input("message")} rows={3} className="field min-w-0 resize-y py-2! text-[16px]" />
         {error("message")}
       </label>
       {serverError && (
