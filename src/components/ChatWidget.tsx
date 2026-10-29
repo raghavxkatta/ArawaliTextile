@@ -117,6 +117,8 @@ export function ChatWidget() {
           open ? "pointer-events-none opacity-0" : ""
         }`}
       >
+        {/* A few soft pulses after the page loads, so visitors notice the chat */}
+        <span aria-hidden="true" className="absolute inset-0 -z-10 animate-pulse-ring rounded-full bg-maroon" />
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
           <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z" strokeLinejoin="round" />
           <path d="M8.5 9.5h7M8.5 12.5h4.5" strokeLinecap="round" />
@@ -130,7 +132,7 @@ export function ChatWidget() {
           aria-label={t.title}
           onKeyDown={(e) => e.key === "Escape" && close()}
           style={viewport ? { top: viewport.top, bottom: "auto", height: viewport.height } : undefined}
-          className="fixed inset-0 z-[70] flex flex-col bg-paper pt-[var(--safe-top)] pb-[var(--safe-bottom)] shadow-[0_18px_48px_rgb(0_0_0/0.28)] min-[641px]:inset-auto min-[641px]:right-[calc(18px+var(--safe-right))] min-[641px]:bottom-[calc(18px+var(--safe-bottom))] min-[641px]:h-[min(620px,calc(100dvh-36px))] min-[641px]:w-[390px] min-[641px]:border min-[641px]:border-line min-[641px]:p-0"
+          className="fixed inset-0 z-[70] flex animate-chat-in flex-col bg-paper min-[641px]:origin-bottom-right pt-[var(--safe-top)] pb-[var(--safe-bottom)] shadow-[0_18px_48px_rgb(0_0_0/0.28)] min-[641px]:inset-auto min-[641px]:right-[calc(18px+var(--safe-right))] min-[641px]:bottom-[calc(18px+var(--safe-bottom))] min-[641px]:h-[min(620px,calc(100dvh-36px))] min-[641px]:w-[390px] min-[641px]:border min-[641px]:border-line min-[641px]:p-0"
         >
           <header className="flex shrink-0 items-start justify-between gap-3 bg-maroon px-4 py-3 text-on-maroon min-[641px]:px-5 min-[641px]:py-4">
             <div className="min-w-0">
@@ -147,12 +149,13 @@ export function ChatWidget() {
             <Bubble kind="model">{t.greeting}</Bubble>
             {entries.length === 0 && (
               <div className="flex flex-wrap gap-2">
-                {t.suggestions.map((s) => (
+                {t.suggestions.map((s, i) => (
                   <button
                     key={s}
                     type="button"
                     onClick={() => send(s)}
-                    className="cursor-pointer border border-blush-line bg-cream px-3 py-1.5 text-left text-[13.5px] hover:border-maroon"
+                    style={{ animationDelay: `${150 + i * 80}ms` }}
+                    className="animate-msg-in cursor-pointer border border-blush-line bg-cream px-3 py-1.5 text-left text-[13.5px] hover:border-maroon"
                   >
                     {s}
                   </button>
@@ -163,7 +166,7 @@ export function ChatWidget() {
               e.kind === "enquiry" ? (
                 <EnquiryCard key={i} draft={e.draft} />
               ) : e.kind === "error" ? (
-                <p key={i} role="alert" className="border-l-[3px] border-error bg-cream px-3 py-2 text-[14px] text-error">
+                <p key={i} role="alert" className="animate-msg-in border-l-[3px] border-error bg-cream px-3 py-2 text-[14px] text-error">
                   {e.text}{" "}
                   <a href={whatsappUrl()} target="_blank" rel="noopener">
                     {content.menu.whatsapp} ↗
@@ -175,7 +178,14 @@ export function ChatWidget() {
                 </Bubble>
               ),
             )}
-            {pending && <p className="text-[13.5px] text-muted italic">{t.thinking}</p>}
+            {pending && (
+              <p className="flex animate-msg-in gap-1.5 self-start bg-blush px-4 py-3.5" role="status">
+                <span className="sr-only">{t.thinking}</span>
+                {[0, 1, 2].map((i) => (
+                  <span key={i} aria-hidden="true" style={{ animationDelay: `${i * 150}ms` }} className="h-2 w-2 animate-typing rounded-full bg-maroon" />
+                ))}
+              </p>
+            )}
           </div>
 
           <form
@@ -221,7 +231,7 @@ function Bubble({ kind, children }: { kind: "user" | "model"; children: React.Re
   return (
     <p
       data-reply={kind === "model" ? "" : undefined}
-      className={`max-w-[88%] px-3.5 py-2.5 text-[15px] leading-relaxed whitespace-pre-wrap ${
+      className={`max-w-[88%] animate-msg-in px-3.5 py-2.5 text-[15px] leading-relaxed whitespace-pre-wrap ${
         kind === "user" ? "self-end bg-maroon text-on-maroon" : "self-start bg-blush text-ink"
       }`}
     >
@@ -280,7 +290,7 @@ function EnquiryCard({ draft }: { draft: EnquiryDraft }) {
   };
 
   if (status === "sent") {
-    return <p className="border-l-[3px] border-whatsapp bg-cream px-3 py-2.5 text-[14.5px] font-semibold text-green">{t.enquiry.sent}</p>;
+    return <p className="animate-msg-in border-l-[3px] border-whatsapp bg-cream px-3 py-2.5 text-[14.5px] font-semibold text-green">{t.enquiry.sent}</p>;
   }
 
   const label = "grid gap-1 text-[13px] font-semibold";
@@ -295,7 +305,7 @@ function EnquiryCard({ draft }: { draft: EnquiryDraft }) {
   const error = (field: CardField) => errors[field] && <span className="text-[12.5px] font-medium text-error">{errors[field]}</span>;
 
   return (
-    <form noValidate onSubmit={onSubmit} aria-label={t.enquiry.title} className="grid gap-3 border border-line bg-cream p-3.5">
+    <form noValidate onSubmit={onSubmit} aria-label={t.enquiry.title} className="grid animate-msg-in gap-3 border border-line bg-cream p-3.5">
       <p className="font-display text-[20px] leading-tight">{t.enquiry.title}</p>
       <label className={label}>
         {f.name.label}

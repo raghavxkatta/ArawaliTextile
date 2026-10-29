@@ -38,7 +38,7 @@ export function JsonLd() {
           addressCountry: site.address.country,
         },
         geo: { "@type": "GeoCoordinates", latitude: site.geo.latitude, longitude: site.geo.longitude },
-        areaServed: "Europe",
+        areaServed: "Worldwide",
       },
     ],
   };

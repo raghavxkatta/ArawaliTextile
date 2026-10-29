@@ -5,7 +5,7 @@
  * or point the paths below at new files.
  */
 export const images = {
-  heroHaveli: "/images/h-haveli.jpg",
+  heroHaveli: "/images/hero-haveli.jpg",
   artisanHands: "/images/h-hands.jpg",
   printingBlocks: "/images/h-blocks.jpg",
   bedcover: "/images/h-bed.jpg",

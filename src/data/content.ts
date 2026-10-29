@@ -7,10 +7,10 @@ export const content = {
   meta: {
     title: "Arawali Textile | Hand Block Printed Textiles from Jaipur",
     description:
-      "Hand block printed bedcovers, quilts, table linen, nightwear and fabric, made to order in Jaipur for boutiques and home-decor brands across Europe. Any size, colour or design.",
+      "Hand block printed bedcovers, quilts, table linen, nightwear and fabric, made to order in Jaipur for boutiques and home-decor brands around the world. Any size, colour or design.",
     ogAlt: "Arawali Textile, hand block printed in Jaipur",
   },
-  topBar: ["HAND BLOCK PRINTED IN JAIPUR", "SINCE 1991", "MADE FOR EUROPE"],
+  topBar: ["HAND BLOCK PRINTED IN JAIPUR", "SINCE 1991", "SHIPPED WORLDWIDE"],
   logoTagline: "TEXTILE · JAIPUR",
   nav: [
     { href: "#heritage", label: "Our heritage", mobile: ["Our ", "heritage"] },
@@ -27,7 +27,7 @@ export const content = {
     titleA: "Arawali",
     titleB: "Textile",
     tag: "The soul of Jaipur, in every thread.",
-    sub: "Hand block printed bedcovers, quilts, table linen and nightwear, made in any size, colour or design for shops across Europe.",
+    sub: "Hand block printed bedcovers, quilts, table linen and nightwear, made in any size, colour or design for shops around the world.",
     cta: "Explore our textiles ↗",
     scrollCue: "A living tradition",
     coords: "JAIPUR, INDIA · 26.91° N, 75.78° E",
@@ -37,12 +37,12 @@ export const content = {
     eyebrow: "Rooted in India · Made by hand",
     title: ["Every piece carries", "a little of Jaipur."],
     paragraphs: [
-      "For generations, printers around Jaipur have pressed carved wooden blocks into cotton, one impression at a time. Arawali is a family workshop on Amber Road that keeps this craft alive and brings it to bedrooms and dining tables across Europe.",
+      "For generations, printers around Jaipur have pressed carved wooden blocks into cotton, one impression at a time. Arawali is a family workshop on Amber Road that keeps this craft alive and brings it to bedrooms and dining tables around the world.",
       "Because every print is placed by hand, no two pieces are exactly alike.",
     ],
     stats: [
       { value: "1991", label: "Founded in Jaipur" },
-      { value: "200", label: "Artisans and staff", countTo: 200 },
+      { value: "200", label: "Artisans and staff" },
       { value: "Any", label: "Size, colour or design" },
     ],
   },
@@ -90,7 +90,7 @@ export const content = {
       { title: "Sample", body: "We print a sample in your colours and courier it to you." },
       { title: "Approval", body: "You confirm colours, sizes and labels before bulk begins." },
       { title: "Production", body: "Printed, stitched and checked in Jaipur, with updates by email." },
-      { title: "Dispatch", body: "Packed for export and shipped to your door in Europe." },
+      { title: "Dispatch", body: "Packed for export and shipped to your door, wherever you are." },
     ],
   },
   gallery: {
@@ -101,6 +101,7 @@ export const content = {
     trackLabel: "Product photos, scroll sideways",
   },
   contact: {
+    imageAlt: "Yellow cotton, hand block printed with large indigo and pink flowers",
     eyebrow: "Your ideas · Our craft",
     title: ["Tell us what", "you’d love to make."],
     lede: "For your shop, your next collection, or a print you have been dreaming of. We reply to every enquiry within a day.",
@@ -136,7 +137,7 @@ export const content = {
     },
     whatsappIntro: "Hello Arawali Textile,",
   },
-  countries: ["Germany", "France", "United Kingdom", "Netherlands", "Italy", "Spain", "Other"],
+  countries: ["United States", "United Kingdom", "Canada", "Australia", "Germany", "France", "Netherlands", "Italy", "Spain", "United Arab Emirates", "Japan", "India", "Other"],
   footer: {
     say: "From Jaipur, with care.",
     explore: "Explore",
@@ -152,7 +153,7 @@ export const content = {
     open: "Ask Arawali a question",
     close: "Close chat",
     title: "Ask Arawali",
-    subtitle: "English · Deutsch · Français · Nederlands · Italiano · Español",
+    subtitle: "Ask in any language",
     greeting:
       "Hello! I can answer questions about our hand block printed textiles, custom designs and how ordering works. Ask in your own language.",
     suggestions: ["Can you print my own design?", "What products do you make?", "How does ordering work?"],

@@ -1,8 +1,9 @@
+import Image from "next/image";
 import { content } from "@/data/content";
+import { images } from "@/data/images";
 import { site, whatsappUrl } from "@/data/site";
 import { CopyButton } from "./CopyButton";
 import { EnquiryForm } from "./EnquiryForm";
-import { Reveal } from "./Reveal";
 
 const iconProps = {
   width: 20,
@@ -20,7 +21,7 @@ export function Contact() {
   return (
     <section id="contact" className="section-pad pt-0!">
       <div className="wrap grid items-start gap-[clamp(36px,6vw,96px)] min-[861px]:grid-cols-2 [&>*]:min-w-0">
-        <Reveal>
+        <div>
           <p className="eyebrow">{t.eyebrow}</p>
           <h2 className="h2">
             {t.title[0]}
@@ -63,10 +64,14 @@ export function Contact() {
               <span>{site.address.full}</span>
             </div>
           </address>
-        </Reveal>
-        <Reveal>
+          {/* Desktop only: balances the taller form beside it. Phones stack the columns, so no gap there */}
+          <figure className="frame mx-0 mt-10 mb-0 hidden aspect-[16/10] min-[861px]:block">
+            <Image src={images.fabricYellow} alt={t.imageAlt} fill sizes="600px" className="object-cover" />
+          </figure>
+        </div>
+        <div>
           <EnquiryForm />
-        </Reveal>
+        </div>
       </div>
     </section>
   );

@@ -13,7 +13,6 @@ import { Heritage } from "@/components/Heritage";
 import { JsonLd } from "@/components/JsonLd";
 import { MotifBand } from "@/components/MotifBand";
 import { OrderTimeline } from "@/components/OrderTimeline";
-import { RevealObserver } from "@/components/RevealObserver";
 import { TopBar } from "@/components/TopBar";
 
 export default function Home() {
@@ -39,7 +38,6 @@ export default function Home() {
       <ChatWidget />
       <FloatingWhatsApp />
       <BackToTop />
-      <RevealObserver />
     </>
   );
 }

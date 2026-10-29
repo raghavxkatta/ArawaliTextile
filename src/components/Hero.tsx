@@ -18,7 +18,8 @@ export function Hero() {
         fetchPriority="high"
         quality={85}
         sizes="100vw"
-        className="animate-kenburns object-cover object-[50%_40%]"
+        // Phones only fit a narrow slice: show the printed bedcovers rather than the dark door
+        className="object-cover object-[78%_50%] min-[861px]:object-center"
       />
       <div className="relative z-[1] max-w-[820px] pt-[72px] pr-[var(--gut-r)] pb-[120px] pl-[var(--gut-l)]">
         <p className="eyebrow animate-rise text-on-hero! [animation-delay:.1s]">{t.eyebrow}</p>
@@ -46,7 +47,7 @@ export function Hero() {
         className="absolute bottom-[13px] left-[var(--gut-l)] z-[1] flex min-h-11 items-center gap-2.5 text-[14px] text-on-hero no-underline"
         href="#heritage"
       >
-        <svg width="14" height="18" viewBox="0 0 14 18" aria-hidden="true" className="animate-bob">
+        <svg width="14" height="18" viewBox="0 0 14 18" aria-hidden="true">
           <path d="M7 1v15M1 10l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="1.6" />
         </svg>
         {t.scrollCue}

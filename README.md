@@ -1,6 +1,6 @@
 # Arawali Textile website
 
-Single-page site for Arawali Textile, Jaipur. Its main job is to turn European buyers into enquiries. Each enquiry is saved to Supabase, emailed to the owner, and acknowledged to the buyer by email, and the buyer gets a prefilled WhatsApp link as a fallback.
+Single-page site for Arawali Textile, Jaipur. Its main job is to turn buyers around the world into enquiries. Each enquiry is saved to Supabase, emailed to the owner, and acknowledged to the buyer by email, and the buyer gets a prefilled WhatsApp link as a fallback.
 
 Stack: Next.js 16 (App Router, Cache Components), TypeScript, Tailwind CSS 4, Supabase, Resend, Zod and Playwright.
 

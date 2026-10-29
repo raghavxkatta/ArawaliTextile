@@ -41,7 +41,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`sticky top-[var(--safe-top)] z-50 border-b border-line bg-cream/94 backdrop-blur-[10px] transition-shadow duration-300 ${
+        className={`sticky top-[var(--safe-top)] z-50 border-b border-line bg-cream transition-shadow duration-300 ${
           scrolled ? "shadow-[0_10px_30px_rgb(29_38_33/0.08)]" : ""
         }`}
       >
